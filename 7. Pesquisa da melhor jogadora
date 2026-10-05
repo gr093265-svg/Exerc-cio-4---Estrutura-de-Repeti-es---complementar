@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+int main()
+{
+    char nome[300][50];
+    int idade[300];
+    char sexo[300];
+    int voto[300];
+
+    int votos[5] = {0};
+
+    int n = 0;
+    int i;
+    int maisVotos;
+
+    char continuar = 'S';
+
+    while (n < 300 && continuar == 'S')
+    {
+        printf("\nNome: ");
+        scanf(" %49[^\n]", nome[n]);
+
+        do
+        {
+            printf("Idade (maior que 12): ");
+            scanf("%d", &idade[n]);
+
+        } while (idade[n] <= 12);
+
+        do
+        {
+            printf("Sexo (M/F): ");
+            scanf(" %c", &sexo[n]);
+
+        } while (sexo[n] != 'M' && sexo[n] != 'F');
+
+        do
+        {
+            printf("Voto (1 a 5): ");
+            scanf("%d", &voto[n]);
+
+        } while (voto[n] < 1 || voto[n] > 5);
+
+        votos[voto[n] - 1]++;
+
+        n++;
+
+        if (n >= 50 && n < 300)
+        {
+            printf("Deseja entrevistar mais alguem? (S/N): ");
+            scanf(" %c", &continuar);
+        }
+    }
+
+    printf("\n--- Votos por jogadora ---\n");
+
+    for (i = 0; i < 5; i++)
+    {
+        printf("Jogadora %d: %d votos\n", i + 1, votos[i]);
+    }
+
+    maisVotos = votos[0];
+
+    for (i = 1; i < 5; i++)
+    {
+        if (votos[i] > maisVotos)
+        {
+            maisVotos = votos[i];
+        }
+    }
+
+    printf("\nMaior quantidade de votos: %d\n", maisVotos);
+
+    printf("\n--- Maiores de idade que votaram na Marta ---\n");
+
+    for (i = 0; i < n; i++)
+    {
+        if (voto[i] == 5 && idade[i] >= 18)
+        {
+            printf("%s\n", nome[i]);
+        }
+    }
+
+    return 0;
+}
