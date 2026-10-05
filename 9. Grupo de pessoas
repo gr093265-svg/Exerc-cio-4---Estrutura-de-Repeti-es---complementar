@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+int main()
+{
+    int i;
+
+    int qtdH = 0;
+    int qtdM = 0;
+
+    char nome[50];
+    char sexo;
+
+    float altura;
+    float peso;
+
+    float somaAltH = 0;
+    float somaAltM = 0;
+
+    float somaPesoH = 0;
+    float somaPesoM = 0;
+
+    for (i = 1; i <= 10; i++)
+    {
+        printf("\nNome: ");
+        scanf(" %49[^\n]", nome);
+
+        do
+        {
+            printf("Sexo (M/F): ");
+            scanf(" %c", &sexo);
+
+        } while (sexo != 'M' && sexo != 'F');
+
+        printf("Altura: ");
+        scanf("%f", &altura);
+
+        printf("Peso: ");
+        scanf("%f", &peso);
+
+        if (sexo == 'M')
+        {
+            qtdH++;
+
+            somaAltH = somaAltH + altura;
+            somaPesoH = somaPesoH + peso;
+        }
+        else
+        {
+            qtdM++;
+
+            somaAltM = somaAltM + altura;
+            somaPesoM = somaPesoM + peso;
+        }
+    }
+
+    printf("\nNumero de homens: %d\n", qtdH);
+    printf("Numero de mulheres: %d\n", qtdM);
+
+    if (qtdH > 0)
+    {
+        printf("Altura media dos homens: %.2f\n",
+               somaAltH / qtdH);
+
+        printf("Peso medio dos homens: %.2f\n",
+               somaPesoH / qtdH);
+    }
+
+    if (qtdM > 0)
+    {
+        printf("Altura media das mulheres: %.2f\n",
+               somaAltM / qtdM);
+
+        printf("Peso medio das mulheres: %.2f\n",
+               somaPesoM / qtdM);
+    }
+
+    printf("Altura media do grupo: %.2f\n",
+           (somaAltH + somaAltM) / 10);
+
+    printf("Peso medio do grupo: %.2f\n",
+           (somaPesoH + somaPesoM) / 10);
+
+    return 0;
+}
