@@ -1,0 +1,81 @@
+#include <stdio.h>
+
+int main()
+{
+    char sexo, olhos, cabelos;
+    int idade;
+    int total = 0;
+    int cont = 0;
+    float salario;
+
+    do
+    {
+        do
+        {
+            printf("\nIdade (10 a 100 ou -1 para finalizar): ");
+            scanf("%d", &idade);
+
+        } while (idade != -1 && (idade < 10 || idade > 100));
+
+        if (idade != -1)
+        {
+            do
+            {
+                printf("Sexo (m/f): ");
+                scanf(" %c", &sexo);
+
+            } while (sexo != 'm' && sexo != 'f');
+
+            do
+            {
+                printf("Cor dos olhos (a/v/c/p): ");
+                scanf(" %c", &olhos);
+
+            } while (olhos != 'a' &&
+                     olhos != 'v' &&
+                     olhos != 'c' &&
+                     olhos != 'p');
+
+            do
+            {
+                printf("Cor dos cabelos (l/c/p/r): ");
+                scanf(" %c", &cabelos);
+
+            } while (cabelos != 'l' &&
+                     cabelos != 'c' &&
+                     cabelos != 'p' &&
+                     cabelos != 'r');
+
+            do
+            {
+                printf("Salario: ");
+                scanf("%f", &salario);
+
+            } while (salario < 0);
+
+            total++;
+
+            if (sexo == 'f' &&
+                idade >= 18 &&
+                idade <= 35 &&
+                olhos == 'c' &&
+                cabelos == 'c')
+            {
+                cont++;
+            }
+        }
+
+    } while (idade != -1);
+
+    if (total > 0)
+    {
+        printf("\nPercentual: %.2f%%\n",
+               cont * 100.0 / total);
+    }
+    else
+    {
+        printf("\nNenhum habitante cadastrado.\n");
+    }
+
+    return 0;
+}
