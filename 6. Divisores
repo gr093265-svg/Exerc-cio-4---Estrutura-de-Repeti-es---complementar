@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    int i;
+
+    do
+    {
+        printf("Digite um numero positivo: ");
+        scanf("%d", &n);
+
+    } while (n <= 0);
+
+    printf("Divisores de %d: ", n);
+
+    for (i = 1; i <= n; i++)
+    {
+        if (n % i == 0)
+        {
+            printf("%d ", i);
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
