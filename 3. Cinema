@@ -1,0 +1,101 @@
+#include <stdio.h>
+
+int main()
+{
+    int i, idade;
+    int qA = 0, qB = 0, qC = 0, qD = 0, qE = 0;
+    int somaD = 0;
+    int maiorA = 0;
+    int maiorD = 0;
+    int maiorE = 0;
+    char nota;
+
+    for (i = 1; i <= 100; i++)
+    {
+        printf("\nIdade do espectador %d: ", i);
+        scanf("%d", &idade);
+
+        do
+        {
+            printf("Nota (A/B/C/D/E): ");
+            scanf(" %c", &nota);
+
+        } while (nota != 'A' &&
+                 nota != 'B' &&
+                 nota != 'C' &&
+                 nota != 'D' &&
+                 nota != 'E');
+
+        if (nota == 'A')
+        {
+            qA++;
+
+            if (idade > maiorA)
+            {
+                maiorA = idade;
+            }
+        }
+
+        if (nota == 'B')
+        {
+            qB++;
+        }
+
+        if (nota == 'C')
+        {
+            qC++;
+        }
+
+        if (nota == 'D')
+        {
+            qD++;
+            somaD = somaD + idade;
+
+            if (idade > maiorD)
+            {
+                maiorD = idade;
+            }
+        }
+
+        if (nota == 'E')
+        {
+            qE++;
+
+            if (idade > maiorE)
+            {
+                maiorE = idade;
+            }
+        }
+    }
+
+    printf("\nQuantidade de otimo: %d\n", qA);
+
+    printf("Diferenca percentual entre B e C: %.2f%%\n",
+           (qB - qC) < 0 ? (qC - qB) : (qB - qC));
+
+    if (qD > 0)
+    {
+        printf("Media de idade de quem respondeu ruim: %.2f\n",
+               (float)somaD / qD);
+    }
+    else
+    {
+        printf("Ninguem respondeu ruim.\n");
+    }
+
+    printf("Percentual de pessimo: %.2f%%\n", qE * 100.0 / 100);
+    printf("Maior idade que respondeu pessimo: %d\n", maiorE);
+
+    if (maiorA > maiorD)
+    {
+        printf("Diferenca entre maior idade de A e D: %d\n",
+               maiorA - maiorD);
+    }
+    else
+    {
+        printf("Diferenca entre maior idade de A e D: %d\n",
+               maiorD - maiorA);
+    }
+
+    return 0;
+}
